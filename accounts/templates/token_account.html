@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Ваш токен{% endblock title %}
+{% block content %}
+    {% if token %}
+    <h1>Ваш токен {{token}}</h1>
+    {% elif delete%}
+    <h1>{{delete}}</h1>
+    {% else %}
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Введите свой пароль</h1>
+                    <form  method="post">
+        
+                        <div class="form-floating">             
+                            <input type="text" name="password" class="form-control" id="ss">
+                            <label for="ss">Ваш пароль</label>
+                        </div>
+                        {% csrf_token %}
+                        <div class="form-check text-start my-3"> <p><input type="submit" class="btn btn-primary w-100 py-2" value="Отправить"></p></div>
+                    
+                    </form>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+{% endblock content %}

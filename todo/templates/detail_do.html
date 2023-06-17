@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}{{do.title}}{% endblock title %}
+{% block content %}
+
+<h1>{{do.title}}</h1>
+
+<p>{{do.text}}</p>
+<form  method="post">
+    <div class="form-floating">               
+        {{form.title}}
+        {{form.title.label_tag}}
+    </div>
+    <div class="form-floating">             
+        {{form.text}}
+        {{form.text.label_tag}}
+    </div>
+    <div class="form-check text-start my-3">    
+        {{form.active.label_tag}}         
+        {{form.active}}        
+    </div>
+    {% csrf_token %}
+    <div class="form-check text-start my-3">
+
+        <p><input type="submit" class="btn btn-primary w-100 py-2"  value="Сохранить" name="save"></p>
+        <a href="/delete{{do.get_absolute_url}}"    class="btn btn-primary w-100 py-2" >Удалить</a>        
+    </div>   
+</form>
+
+
+{% endblock content %}

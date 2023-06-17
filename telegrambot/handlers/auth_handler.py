@@ -25,7 +25,7 @@ async def get_toket(message:types.Message,bot:Bot, state:FSMContext):
         await state.set_state(InSystem.login)
         await state.update_data(token=message.text)
     else:
-        await message.answer("Вы ввели неправильный токент", reply_markup=startmarkup)
+        await message.answer("Вы ввели неправильный токент или вышли, попробуйте авторизоваться", reply_markup=startmarkup)
         await state.set_state(InSystem.logout)
-        
+
     

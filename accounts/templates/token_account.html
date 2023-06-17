@@ -9,12 +9,10 @@
         <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light">Введите свой пароль</h1>
+                    <h1 class="fw-light">Нажмите кнопку</h1>
                     <form  method="post">
         
-                        <div class="form-floating">             
-                            <input type="text" name="password" class="form-control" id="ss">
-                            <label for="ss">Ваш пароль</label>
+                        <div class="form-floating">           
                         </div>
                         {% csrf_token %}
                         <div class="form-check text-start my-3"> <p><input type="submit" class="btn btn-primary w-100 py-2" value="Отправить"></p></div>

@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 import requests
 from django.contrib.auth import get_user
 from dotenv import load_dotenv
+from rest_framework.authtoken.models import Token
 import os
 # Create your views here.
 load_dotenv()
@@ -19,11 +20,9 @@ class UserCreationView(CreateView):
 def get_ac_token(request):
     if request.method=="POST":
         user=get_user(request)
-        password=request.POST["password"]
-        result=requests.post("http://"+os.getenv("URL_SERVER")+":"+os.getenv("PORT")+"/api/v1/auth/token/login/",data={"username":user.username,"password":password})
-        result.raise_for_status()
-        request.session["token"]=result.json()["auth_token"]
-        return render(request,"token_account.html",{"token":result.json()["auth_token"]})
+        result=Token.objects.get_or_create(user=user).key
+        request.session["token"]=result
+        return render(request,"token_account.html",{"token":result})
     return render(request, "token_account.html")
 
 def delete_token(request): 

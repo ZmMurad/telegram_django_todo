@@ -114,5 +114,5 @@ async def add_title_do(message:types.Message, bot:Bot, state:FSMContext):
         await message.answer(f"Ваша запись успешно добавлена {result}")
         await state.update_data(status_add=None)
     else:
-        await message.answer("Я не расспознал вашу команду")
+        await message.answer("Я не расспознал вашу команду, попробуйте авторизоваться", reply_markup= startmarkup)
         

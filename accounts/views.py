@@ -20,14 +20,20 @@ class UserCreationView(CreateView):
 def get_ac_token(request):
     if request.method=="POST":
         user=get_user(request)
-        result=Token.objects.get_or_create(user=user).key
-        request.session["token"]=result
+        result=Token.objects.get_or_create(user=user)
+        if isinstance(result,tuple):
+            result=result[0]
+        else:
+            result=result.key
+        print(result)
         return render(request,"token_account.html",{"token":result})
     return render(request, "token_account.html")
 
 def delete_token(request): 
-    token=request.session.get("token")
-    print(token)
-    result=requests.post("http://"+os.getenv("URL_SERVER")+":"+os.getenv("PORT")+"/api/v1/auth/token/logout/",headers={"Authorization":f"Token {token}"})
-    result.raise_for_status()
-    return render(request,"token_account.html",{"delete":"Вы удалили токен"})
+    token=Token.objects.get(user=get_user(request))
+    try:
+        result=requests.post("http://"+os.getenv("URL_SERVER")+":"+os.getenv("PORT")+"/api/v1/auth/token/logout/",headers={"Authorization":f"Token {token}"})
+        result.raise_for_status()
+        return render(request,"token_account.html",{"delete":"Вы удалили токен"})
+    except:
+        return render(request,"token_account.html",{"delete":"Токен не удален, скорее всего он не был создан."})

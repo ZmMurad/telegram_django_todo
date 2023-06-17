@@ -36,20 +36,19 @@ python main.py
 
 ## Маршруты API
 
-```http://127.0.0.1:8000/api/v1/does/ ```- GET запрос без параметров для списка своих дел, вы должны быть авторизованы по токену. Токен можно получить на главной странице после регистрации. Авторизация в headers.
+# ```http://127.0.0.1:8000/api/v1/does/ ```- GET запрос без параметров для списка своих дел, вы должны быть авторизованы по токену. Токен можно получить на главной странице после регистрации. Авторизация в headers.
 Пример:
 
-```
-#request:
 
+## request
+```
 headers={
     "Authorization": f"Token {token}"
 }
 ```
 
+## response
 ```
-#response
-
 {
     "status": "success",
     "data": [
@@ -63,12 +62,11 @@ headers={
 }
 ```
 
-```http://127.0.0.1:8000/api/v1/does/ ```- POST запрос с данными title, text для внесения нового дела. Авторизация в headers.
+# ```http://127.0.0.1:8000/api/v1/does/ ```- POST запрос с данными title, text для внесения нового дела. Авторизация в headers.
 Пример:
 
+## request
 ```
-#request:
-
 headers={
     "Authorization": f"Token {token}"
 }
@@ -78,9 +76,8 @@ data={
 }
 ```
 
+## response
 ```
-#response
-
 {
     "title": "postman",
     "text": "postman",
@@ -90,20 +87,18 @@ data={
 
 
 
-```http://127.0.0.1:8000/api/v1/does/<int:pk>/ ```- GET запрос с токеном для получения текущей записи
+# ```http://127.0.0.1:8000/api/v1/does/<int:pk>/ ```- GET запрос с токеном для получения текущей записи
 Пример:
 
+## request
 ```
-#request:
-
 headers={
     "Authorization": f"Token {token}"
 }
 ```
 
+## response
 ```
-#response
-
 {
     "status": "success",
     "data": {
@@ -117,31 +112,27 @@ headers={
 
 
 
-```http://127.0.0.1:8000/api/v1/does/<int:pk>/ ```- DELETE запрос с токеном для удаления записи
+# ```http://127.0.0.1:8000/api/v1/does/<int:pk>/ ```- DELETE запрос с токеном для удаления записи
 Пример:
 
+## request
 ```
-#request:
-
 headers={
     "Authorization": f"Token {token}"
 }
 ```
-
+## response
 ```
-#response
 
 {
     "status": "success"
 }
 ```
 
-```http://127.0.0.1:8000/api/v1/does/<int:pk>/ ```- PUT запрос с токеном и новыми данными для изменения записи
+# ```http://127.0.0.1:8000/api/v1/does/<int:pk>/ ```- PUT запрос с токеном и новыми данными для изменения записи
 Пример:
-
+## request
 ```
-#request:
-
 headers={
     "Authorization": f"Token {token}"
 }
@@ -150,10 +141,8 @@ data={
     "text":"text_test"
 }
 ```
-
+## response
 ```
-#response
-
 {
     "status": "success",
     "data": {

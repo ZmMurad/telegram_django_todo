@@ -6,7 +6,7 @@
 2. Перейти в директорию проекта
 3. Запустить команду 
 ```
-pip install -r requirements.txt.txt
+pip install -r requirements.txt
 ```
 4. Создать файл .env заполнить в нем поля 
 ```

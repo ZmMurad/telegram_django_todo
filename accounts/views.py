@@ -25,12 +25,12 @@ def get_ac_token(request):
             result=result[0]
         else:
             result=result.key
-        print(result)
+        request.session["token_str"]=str(result)
         return render(request,"token_account.html",{"token":result})
     return render(request, "token_account.html")
 
 def delete_token(request): 
-    token=Token.objects.get(user=get_user(request))
+    token=request.session["token_str"]
     try:
         result=requests.post("http://"+os.getenv("URL_SERVER")+":"+os.getenv("PORT")+"/api/v1/auth/token/logout/",headers={"Authorization":f"Token {token}"})
         result.raise_for_status()
